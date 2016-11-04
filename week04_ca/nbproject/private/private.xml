@@ -3,21 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/web/index.html</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/web/post_note.js</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/java/sg/edu/nus/iss/javaee/noticeboard/model/Note.java</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/web/WEB-INF/glassfish-web.xml</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/java/sg/edu/nus/iss/javaee/noticeboard/web/PostSocket.java</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/java/sg/edu/nus/iss/javaee/noticeboard/business/AccountBean.java</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/java/sg/edu/nus/iss/javaee/noticeboard/model/User.java</file>
             <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/nbproject/build-impl.xml</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/java/sg/edu/nus/iss/javaee/noticeboard/web/LoginView.java</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/web/login.xhtml</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/java/sg/edu/nus/iss/javaee/noticeboard/business/NoteBean.java</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/web/register.xhtml</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/web/WEB-INF/web.xml</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/conf/persistence.xml</file>
-            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/src/java/sg/edu/nus/iss/javaee/noticeboard/web/RegisterView.java</file>
+            <file>file:/Users/wangxuemin/NetBeansProjects/ejava_ftnull_ca/week04_ca/web/WEB-INF/glassfish-web.xml</file>
         </group>
     </open-files>
 </project-private>
