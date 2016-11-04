@@ -10,11 +10,13 @@ import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import sg.edu.nus.iss.javaee.noticeboard.web.instance.SessionInstance;
 
 /**
  *
@@ -26,6 +28,7 @@ public class PostSocket {
 
     @OnOpen
     public void open(Session session) {
+        SessionInstance.getInstance().session = session;
         System.out.println(">>> new session: " + session.getId());
     }
 
@@ -56,9 +59,9 @@ public class PostSocket {
     public void onError(final Session session, final Throwable t) {
         System.out.println(">>> error occured:" + t.getMessage());
     }
-//
-//    @OnClose
-//    public void onClose(final Session session) {
-//        System.out.println(">>> close connection" + session.getId());
-//    }
+
+    @OnClose
+    public void onClose(final Session session) {
+        System.out.println(">>> close connection" + session.getId());
+    }
 }

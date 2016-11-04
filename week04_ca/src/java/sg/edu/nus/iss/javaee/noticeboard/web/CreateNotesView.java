@@ -5,6 +5,7 @@
  */
 package sg.edu.nus.iss.javaee.noticeboard.web;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,13 +15,20 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
 import sg.edu.nus.iss.javaee.noticeboard.business.AccountBean;
 import sg.edu.nus.iss.javaee.noticeboard.business.NoteBean;
 import sg.edu.nus.iss.javaee.noticeboard.model.Category;
 import sg.edu.nus.iss.javaee.noticeboard.model.Note;
 import sg.edu.nus.iss.javaee.noticeboard.model.User;
+import sg.edu.nus.iss.javaee.noticeboard.web.instance.SessionInstance;
 
 /**
  *
@@ -102,25 +110,34 @@ public class CreateNotesView {
         if (userLogged != null) {
             note.setUser(userLogged.get());
         }
-        note.setCategory(category);
-        noteBean.add(note);
-        /*
-            JsonObjectBuilder jsonNote = Json.createObjectBuilder()
-                    .add("title", title)
-                    .add("content", content)
-                    .add("postTime", postTime.toString())
-                    .add("category", category);  
-            
-            JsonArray ja = Json.createArrayBuilder().add(jsonNote).add(jsonNote).build();
-            String messageString=ja.toString();
-         */
-        //    UserSessionHandler us = UserSessionHandler.getInstance();
+        //FIXME
+        Category ca = new Category();
+        ca.setCategoryid(0);
+        ca.setCategoryname("tuition");
+        note.setCategory(ca);
+//        noteBean.add(note);
+        sendMessage(note);
 
-//        try {
-//            //   sendMessageOverSocket(ja.toString());
-//            ec.redirect(ec.getRequestContextPath() + "/faces/index.html");
-//        } catch (IOException ex) {
-//            Logger.getLogger(CreateNotesView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
+
+    public void sendMessage(Note note) {
+        final JsonObject message = Json.createObjectBuilder()
+                .add("title", note.getTitle())
+                .add("message", note.getContent())
+                .add("category", "tuition")
+                .add("timestamp", (new Date()).toString())
+                .build();
+
+        for (Session s : SessionInstance.getInstance().session.getOpenSessions()) {
+            try {
+                s.getBasicRemote().sendText(message.toString());
+            } catch (IOException ex) {
+                try {
+                    s.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+    }
+
 }

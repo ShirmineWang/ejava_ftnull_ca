@@ -7,8 +7,7 @@ $(function () {
     var url = "ws://" + document.location.host + document.location.pathname + "displayupdate";
     var socket = new WebSocket(url);
 
-    socket.onmessage = function (evt) {
-        var msg = JSON.parse(evt.data);
+    socket.onmessage = function (msg) {
         writeToChatboard("title:" + msg.title + ",date:" + msg.timestamp + ",content:" + msg.message + "category:" + msg.category);
     };
 
