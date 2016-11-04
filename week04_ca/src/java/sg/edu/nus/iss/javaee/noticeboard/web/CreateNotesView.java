@@ -110,11 +110,13 @@ public class CreateNotesView {
             note.setUser(userLogged.get());
         }
         //FIXME
+        /*
         Category ca = new Category();
         ca.setCategoryid(0);
         ca.setCategoryname("tuition");
-        note.setCategory(ca);
-//        noteBean.add(note);
+*/
+        note.setCategory(category);
+        noteBean.add(note);
         sendMessage(note);
 
     }
