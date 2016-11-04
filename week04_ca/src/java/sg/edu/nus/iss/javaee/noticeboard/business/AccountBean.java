@@ -47,4 +47,10 @@ public class AccountBean {
         query.setParameter("password", user.getPassword());
         return (query.getResultList().size() == 1);
     }
+    
+    public void getAllUser(){
+         TypedQuery<User> query = em.createQuery(
+                "SELECT u from User u", User.class);
+         System.out.println(query.getResultList());
+    }
 }
