@@ -25,7 +25,6 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import sg.edu.nus.iss.javaee.noticeboard.business.AccountBean;
 import sg.edu.nus.iss.javaee.noticeboard.business.NoteBean;
-import sg.edu.nus.iss.javaee.noticeboard.model.Category;
 import sg.edu.nus.iss.javaee.noticeboard.model.Note;
 import sg.edu.nus.iss.javaee.noticeboard.model.User;
 import sg.edu.nus.iss.javaee.noticeboard.web.instance.SessionInstance;

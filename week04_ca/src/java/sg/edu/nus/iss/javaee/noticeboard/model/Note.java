@@ -6,6 +6,7 @@
 package sg.edu.nus.iss.javaee.noticeboard.model;
 
 import java.sql.Timestamp;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -24,13 +25,18 @@ public class Note {
     private int noteid;
     private String title;
     private String content;
+    @Column(name = "timestamp")
     private Timestamp postTime;
+    private String categoryid;
     @ManyToOne(optional = false)
     @JoinColumn(name = "userid", nullable = false)
     private User users;
+    /*
     @ManyToOne(optional = false)
     @JoinColumn(name = "categoryid", nullable = false)
     private Category category;
+    */
+    
 
     public int getNoteid() {
         return noteid;
@@ -72,16 +78,12 @@ public class Note {
         this.users = user;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+    public String getCategory() {
+        return categoryid;
     }
 
     public void setCategory(String category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.categoryid = category;
     }
     
 }
