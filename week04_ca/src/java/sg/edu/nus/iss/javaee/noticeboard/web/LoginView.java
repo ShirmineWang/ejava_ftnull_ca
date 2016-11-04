@@ -52,6 +52,7 @@ public class LoginView implements Serializable {
         try {
             if (accountBean.validateLogin(user)) {
                 //req.login(username, password);
+                req.getSession().setAttribute("user", user);
                 return ("menu");
             }
             return ("admin/invalid_page");

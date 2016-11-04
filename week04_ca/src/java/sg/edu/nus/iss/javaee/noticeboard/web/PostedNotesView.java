@@ -7,7 +7,7 @@ package sg.edu.nus.iss.javaee.noticeboard.web;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import sg.edu.nus.iss.javaee.noticeboard.model.Note;
 
@@ -15,7 +15,7 @@ import sg.edu.nus.iss.javaee.noticeboard.model.Note;
  *
  * @author linby
  */
-@ViewScoped
+@RequestScoped
 @Named
 public class PostedNotesView {
     private List<Note> items = new ArrayList<>();
