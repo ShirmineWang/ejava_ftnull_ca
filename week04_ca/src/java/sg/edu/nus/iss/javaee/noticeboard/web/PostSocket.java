@@ -7,8 +7,6 @@ package sg.edu.nus.iss.javaee.noticeboard.web;
 
 import java.io.IOException;
 import java.util.Date;
-import javax.annotation.Resource;
-import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -26,9 +24,6 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/displayupdate")
 public class PostSocket {
 
-    @Resource(lookup = "concurrent/mExecutorThread")
-    private ManagedScheduledExecutorService executor;
-
     @OnOpen
     public void open(Session session) {
         System.out.println(">>> new session: " + session.getId());
@@ -38,32 +33,27 @@ public class PostSocket {
     public void message(final Session session, final String msg) {
         System.out.println(">>> message: " + msg);
 
-        executor.submit(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println(">>> in thread");
-                final JsonObject message = Json.createObjectBuilder()
-                        .add("message", msg)
-                        .add("timestamp", (new Date()).toString())
-                        .build();
+        System.out.println(">>> in thread");
+        final JsonObject message = Json.createObjectBuilder()
+                .add("message", msg)
+                .add("timestamp", (new Date()).toString())
+                .build();
 
-                for (Session s : session.getOpenSessions()) {
-                    try {
-                        s.getBasicRemote().sendText(message.toString());
-                    } catch (IOException ex) {
-                        try {
-                            s.close();
-                        } catch (IOException e) {
-                        }
-                    }
+        for (Session s : session.getOpenSessions()) {
+            try {
+                s.getBasicRemote().sendText(message.toString());
+            } catch (IOException ex) {
+                try {
+                    s.close();
+                } catch (IOException e) {
                 }
             }
-        });
+        }
         System.out.println(">>> exiting message");
     }
 
     @OnError
-    public void onError(final Session session,final Throwable t) {
+    public void onError(final Session session, final Throwable t) {
         System.out.println(">>> error occured:" + t.getMessage());
     }
 //

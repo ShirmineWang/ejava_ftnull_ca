@@ -6,21 +6,29 @@
 package sg.edu.nus.iss.javaee.noticeboard.web;
 
 import java.io.Serializable;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import sg.edu.nus.iss.javaee.noticeboard.business.AccountBean;
+import sg.edu.nus.iss.javaee.noticeboard.model.User;
 
 /**
  *
  * @author linby
  */
 @ViewScoped
-@Named
+@Named("registerView")
 public class RegisterView implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String username;
     private String password;
     private String repassword;
+    
+    @EJB private AccountBean accountBean;
 
     public String getUsername() {
         return username;
@@ -45,4 +53,27 @@ public class RegisterView implements Serializable {
     public void setRepassword(String repassword) {
         this.repassword = repassword;
     }
+
+    public String register() {
+        HttpServletRequest req
+                = (HttpServletRequest) FacesContext.getCurrentInstance()
+                .getExternalContext().getRequest();
+        try {
+            if (password.equals(repassword)&& username!=null&&!username.isEmpty()) {
+                //do register
+                User user = new User();
+                user.setUserid(username);
+                user.setPassword(password);
+                accountBean.register(user);
+                return ("login");
+            }else{
+                return ("admin/invalid_page");
+            }
+        } catch (Throwable t) {
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage("register message input error or username already exists"));
+            return (null);
+        }
+    }
+
 }
