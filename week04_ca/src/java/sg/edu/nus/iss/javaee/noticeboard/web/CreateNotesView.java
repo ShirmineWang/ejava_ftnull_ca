@@ -10,8 +10,10 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
@@ -25,6 +27,7 @@ import javax.websocket.Session;
 import sg.edu.nus.iss.javaee.noticeboard.business.AccountBean;
 import sg.edu.nus.iss.javaee.noticeboard.business.NoteBean;
 import sg.edu.nus.iss.javaee.noticeboard.model.Note;
+import sg.edu.nus.iss.javaee.noticeboard.model.User;
 
 /**
  *
@@ -43,6 +46,7 @@ public class CreateNotesView {
     private Timestamp postTime;
     private List<String> categories;
 
+    @PostConstruct
     private void init() {
         this.categories = new ArrayList<String>();
         this.categories.add("Social"); 
@@ -94,7 +98,9 @@ public class CreateNotesView {
             Timestamp postTime = new Timestamp(new Date().getTime());
             note.setPostTime(postTime);
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            note.setUser(accountBean.findUserById(ec.getRemoteUser()));
+            Optional<User> userLogged=accountBean.findUserById(ec.getRemoteUser());
+            if(userLogged!=null){
+            note.setUser(userLogged.get());}
             note.setCategory(category);
             noteBean.add(note);
             /*
