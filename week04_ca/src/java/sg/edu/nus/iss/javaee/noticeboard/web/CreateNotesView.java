@@ -14,6 +14,7 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -94,7 +95,7 @@ public class CreateNotesView {
         return categories;
     }
 
-    public void createNote() {
+    public void createNote() throws IOException {
 
         Note note = new Note();
         note.setTitle(title);
@@ -118,6 +119,8 @@ public class CreateNotesView {
         note.setCategory(category);
         noteBean.add(note);
         sendMessage(note);
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(ec.getRequestContextPath() + "/faces/menu.xhtml");
 
     }
 
