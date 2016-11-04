@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import sg.edu.nus.iss.javaee.noticeboard.model.User;
 import sg.edu.nus.iss.javaee.noticeboard.web.LoginView;
 
 /**
@@ -22,4 +23,8 @@ public class AccountBean {
      public void register(LoginView user) throws SQLException {
         em.persist(user);
     }
+     
+     public User findUserById(String id){
+         return em.find(User.class, id);
+     }
 }

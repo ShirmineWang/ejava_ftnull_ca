@@ -80,4 +80,8 @@ public class Note {
         this.category = category;
     }
 
+    public void setCategory(String category) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

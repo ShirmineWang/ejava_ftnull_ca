@@ -40,7 +40,7 @@ public class LoginView implements Serializable {
     public String login() {
         HttpServletRequest req
                 = (HttpServletRequest) FacesContext.getCurrentInstance()
-                .getExternalContext().getRequest();
+                        .getExternalContext().getRequest();
         try {
             req.login(username, password);
         } catch (Throwable t) {
