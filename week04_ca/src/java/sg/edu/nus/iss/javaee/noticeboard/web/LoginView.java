@@ -13,6 +13,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import sg.edu.nus.iss.javaee.noticeboard.business.AccountBean;
+import sg.edu.nus.iss.javaee.noticeboard.model.User;
 
 @ViewScoped
 @Named
@@ -21,8 +22,9 @@ public class LoginView implements Serializable {
     private static final long serialVersionUID = 1L;
     private String username;
     private String password;
-    
-    @EJB private AccountBean accountBean;
+
+    @EJB
+    private AccountBean accountBean;
 
     public String getUsername() {
         return username;
@@ -44,15 +46,20 @@ public class LoginView implements Serializable {
         HttpServletRequest req
                 = (HttpServletRequest) FacesContext.getCurrentInstance()
                 .getExternalContext().getRequest();
+        User user = new User();
+        user.setUserid(username);
+        user.setPassword(password);
         try {
-            req.login(username, password);
-            return ("menu");
+            if (accountBean.validateLogin(user)) {
+//                req.login(username, password);
+                return ("menu");
+            }
+            return ("admin/invalid_page");
         } catch (Throwable t) {
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage("Incorrect login"));
             return (null);
         }
     }
-
 
 }

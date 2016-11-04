@@ -67,11 +67,11 @@ public class RegisterView implements Serializable {
                 accountBean.register(user);
                 return ("login");
             }else{
-                return ("secure/invalid_page");
+                return ("admin/invalid_page");
             }
         } catch (Throwable t) {
             FacesContext.getCurrentInstance()
-                    .addMessage(null, new FacesMessage("Incorrect login"));
+                    .addMessage(null, new FacesMessage("register message input error or username already exists"));
             return (null);
         }
     }
