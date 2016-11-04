@@ -21,10 +21,94 @@ and open the template in the editor.
     <body>
         <h1>Post Notes</h1>
         <div>
+            <div><a href="faces/register.xhtml" class="btn btn-primary">Register</a>
+        <a href="faces/login.xhtml" class="btn btn-primary">Login</a></div>
             <div class="form-group">
                 <label for="postarea">notes:</label>
-                <textarea id="postarea" rows="10" disabled class="form-control"></textarea>
+                <div id="notice_board" class="container">	
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a  href="#1" data-toggle="tab">All</a>
+                            </li>
+                            <li><a href="#2" data-toggle="tab">Social</a>
+                            </li>
+                            <li><a href="#3" data-toggle="tab">For Sale</a>
+                            </li>
+                            <li><a href="#4" data-toggle="tab">Jobs</a>
+                            </li>
+                            <li><a href="#5" data-toggle="tab">Tuition</a>
+                            </li>
+                        </ul>
+                <div class="tab-content ">
+                            <div class="tab-pane active" id="1">
+                                <table id="allPosts" class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="title">Title</th>
+                                            <th data-field="category">Category</th>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="content">Content</th>
+                                            <th data-field="user">User</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="2">
+                                <table id="socialPosts" class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="title">Title</th>
+                                            <th data-field="category">Category</th>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="content">Content</th>
+                                            <th data-field="user">User</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="3">
+                                <table id="forsalePosts" class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="title">Title</th>
+                                            <th data-field="category">Category</th>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="content">Content</th>
+                                            <th data-field="user">User</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="4">
+                                <table id="jobsPosts" class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="title">Title</th>
+                                            <th data-field="category">Category</th>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="content">Content</th>
+                                            <th data-field="user">User</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                    <div class="tab-pane" id="5">
+                                <table id="tuitionPosts" class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="title">Title</th>
+                                            <th data-field="category">Category</th>
+                                            <th data-field="date">Date</th>
+                                            <th data-field="content">Content</th>
+                                            <th data-field="user">User</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                </div>
             </div>
+            <div><a class="navbar-brand" href="#{request.contextPath}/faces/menu.html">Back</a></div>
         </div>
     </body>
 </html>

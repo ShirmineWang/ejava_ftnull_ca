@@ -6,6 +6,8 @@
 package sg.edu.nus.iss.javaee.noticeboard.model;
 
 import java.sql.Timestamp;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -85,5 +87,13 @@ public class Note {
     public void setCategory(String category) {
         this.categoryid = category;
     }
-    
+    public JsonObject toJsonObject(){
+        return Json.createObjectBuilder()
+                    .add("title", title)
+                    .add("category", categoryid)
+                    .add("date", postTime.toString())
+                    .add("content", content)
+                    .add("user", users.getUserid())
+                    .build();
+    }
 }

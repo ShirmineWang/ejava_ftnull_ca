@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Personal Notes</title>
         <!-- load libs -->
@@ -11,14 +13,16 @@
     </h:head>
     <h1>Personal Notes</h1>
     <h:body class="container">
-        <div class="card">
-            <div class="card-block">
-                <h4 id="title" class="card-title">Card title</h4>
-                <p id="category" class="card-text"><small class="text-muted">Category:Tuition</small></p>
-                <p id="posttime" class="card-text"><small class="text-muted">PostTime:yyyy-MM-dd </small></p>
-                <p id="content" class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        <ui:repeat var="note" value="${postedNotesView.notes}">
+            <div class="card">
+                <div class="card-block">
+                    <h4 id="title" class="card-title">#{note.title}</h4>
+                    <p id="category" class="card-text"><small class="text-muted">#{note.category}</small></p>
+                    <p id="posttime" class="card-text"><small class="text-muted">#{note.posttime} </small></p>
+                    <p id="content" class="card-text">#{note.content}</p>
+                </div>
             </div>
-        </div>
+        </ui:repeat>
     </h:body>
 </html>
 

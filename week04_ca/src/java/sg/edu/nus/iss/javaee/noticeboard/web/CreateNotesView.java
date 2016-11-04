@@ -6,6 +6,7 @@
 package sg.edu.nus.iss.javaee.noticeboard.web;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -125,12 +126,7 @@ public class CreateNotesView {
     }
 
     public void sendMessage(Note note) {
-        final JsonObject message = Json.createObjectBuilder()
-                .add("title", note.getTitle())
-                .add("message", note.getContent())
-                .add("category", "tuition")
-                .add("timestamp", (new Date()).toString())
-                .build();
+        final JsonObject message = note.toJsonObject();
 
         for (Session s : SessionInstance.getInstance().session.getOpenSessions()) {
             try {
