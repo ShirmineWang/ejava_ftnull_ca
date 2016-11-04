@@ -5,7 +5,7 @@
  */
 package sg.edu.nus.iss.javaee.noticeboard.model;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -23,7 +23,7 @@ public class Category {
     private String categoryname;
     
     @OneToMany(mappedBy = "category")
-    private ArrayList<Note> noteList;
+    private Collection<Note> noteList;
 
     public int getCategoryid() {
         return categoryid;
@@ -41,11 +41,11 @@ public class Category {
         this.categoryname = categoryname;
     }
 
-    public ArrayList<Note> getNoteList() {
+    public Collection<Note> getNoteList() {
         return noteList;
     }
 
-    public void setNoteList(ArrayList<Note> noteList) {
+    public void setNoteList(Collection<Note> noteList) {
         this.noteList = noteList;
     }
     

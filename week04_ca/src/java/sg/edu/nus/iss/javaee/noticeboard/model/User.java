@@ -5,7 +5,7 @@
  */
 package sg.edu.nus.iss.javaee.noticeboard.model;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.persistence.Entity;
@@ -26,7 +26,7 @@ public class User {
     private String password;
     
     @OneToMany(mappedBy = "users")
-    private ArrayList<Note> notes;
+    private Collection<Note> notes;
 
     public String getUserid() {
         return userid;
@@ -44,11 +44,11 @@ public class User {
         this.password = password;
     }
     
-    public ArrayList<Note> getNoteList() {
+    public Collection<Note> getNoteList() {
         return notes;
     }
 
-    public void setNoteList(ArrayList<Note> noteList) {
+    public void setNoteList(Collection<Note> noteList) {
         this.notes = noteList;
     }
     

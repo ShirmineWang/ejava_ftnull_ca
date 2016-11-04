@@ -19,4 +19,5 @@ import sg.edu.nus.iss.javaee.noticeboard.model.Note;
 @Named
 public class PostedNotesView {
     private List<Note> items = new ArrayList<>();
+    
 }

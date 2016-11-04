@@ -6,12 +6,11 @@
 package sg.edu.nus.iss.javaee.noticeboard.business;
 
 import java.sql.SQLException;
+import javax.ejb.EJB;
 import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sg.edu.nus.iss.javaee.noticeboard.model.User;
-import sg.edu.nus.iss.javaee.noticeboard.web.LoginView;
 import javax.persistence.TypedQuery;
 import sg.edu.nus.iss.javaee.noticeboard.model.User;
 
@@ -24,20 +23,24 @@ public class AccountBean {
 
     @PersistenceContext
     private EntityManager em;
+    
+    @EJB
+    private GroupBean groupBean;
 
     private static final String queryLogin = "SELECT u FROM User u WHERE u.userid=:userid and u.password=:password";
     private static final String querySelect = "SELECT u FROM User u WHERE u.userid = :userid";
     
     public void register(User user) throws SQLException {
-        em.persist(user);
+        if(user !=null){
+            em.persist(user);
+            groupBean.addToGroup(user, "USER");
+        }
     }
 
     public Optional<User> findUserById(String id){
         TypedQuery<User> query=em.createQuery(querySelect,User.class);
         query.setParameter("userid", id);
         return Optional.ofNullable(query.getSingleResult());
-     //   return query.getResultList().get(0);
-    //     return em.find(User.class, id);
      }
     
     public boolean validateLogin(User user) throws SQLException {
