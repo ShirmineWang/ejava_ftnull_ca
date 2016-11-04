@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sg.edu.nus.iss.javaee.noticeboard.web.LoginView;
+import sg.edu.nus.iss.javaee.noticeboard.model.User;
 
 /**
  *
@@ -19,7 +19,7 @@ import sg.edu.nus.iss.javaee.noticeboard.web.LoginView;
 public class AccountBean {
      @PersistenceContext private EntityManager em;
      
-     public void register(LoginView user) throws SQLException {
+     public void register(User user) throws SQLException {
         em.persist(user);
     }
 }
