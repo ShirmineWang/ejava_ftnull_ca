@@ -19,7 +19,7 @@ $(function () {
     
     socket.onclose = function (msg) {
         alert(msg.data);
-        writeToChatboard("Disconnected from chat server");
+        writeToChatboard("Disconnected from post server");
     };
     
     socket.onerror = function(evt){

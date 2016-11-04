@@ -26,7 +26,7 @@ public class User {
     private String password;
     
     @OneToMany(mappedBy = "users")
-    private ArrayList<Note> noteList;
+    private ArrayList<Note> notes;
 
     public String getUserid() {
         return userid;
@@ -45,11 +45,11 @@ public class User {
     }
     
     public ArrayList<Note> getNoteList() {
-        return noteList;
+        return notes;
     }
 
     public void setNoteList(ArrayList<Note> noteList) {
-        this.noteList = noteList;
+        this.notes = noteList;
     }
     
 

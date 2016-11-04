@@ -27,7 +27,7 @@ public class Note {
     private Timestamp postTime;
     @ManyToOne(optional = false)
     @JoinColumn(name = "userid", nullable = false)
-    private User user;
+    private User users;
     @ManyToOne(optional = false)
     @JoinColumn(name = "categoryid", nullable = false)
     private Category category;
@@ -65,11 +65,11 @@ public class Note {
     }
 
     public User getUser() {
-        return user;
+        return users;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.users = user;
     }
 
     public Category getCategory() {

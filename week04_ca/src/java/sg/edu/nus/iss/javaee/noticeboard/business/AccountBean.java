@@ -17,8 +17,7 @@ import sg.edu.nus.iss.javaee.noticeboard.web.LoginView;
  */
 @Stateless
 public class AccountBean {
-     @PersistenceContext
-    private EntityManager em;
+     @PersistenceContext private EntityManager em;
      
      public void register(LoginView user) throws SQLException {
         em.persist(user);
