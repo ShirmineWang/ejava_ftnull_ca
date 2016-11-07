@@ -83,7 +83,7 @@ public class createDeliveryView {
     public void createPod(int pkgid){
         Pod pod=new Pod();
         pod.setPkg_id(pkgid);
-        pod.setDelivery_date(new Timestamp(0));
+        pod.setDelivery_date(new Timestamp(System.currentTimeMillis()));
         
         podBean.addPod(pod);
     }

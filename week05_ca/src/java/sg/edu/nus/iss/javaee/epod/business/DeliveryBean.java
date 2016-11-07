@@ -33,6 +33,7 @@ public class DeliveryBean {
     
             em.persist(delivery);
             em.flush();
-            return delivery.getPkg_id();
+            int pkgkey=delivery.getPkg_id();
+            return pkgkey;
     }
 }

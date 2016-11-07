@@ -7,6 +7,7 @@ package sg.edu.nus.iss.javaee.epod.business;
 
 import java.sql.Timestamp;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -16,6 +17,7 @@ import sg.edu.nus.iss.javaee.epod.model.Pod;
  *
  * @author linby
  */
+@Stateless
 public class PodBean {
     
     @PersistenceContext
