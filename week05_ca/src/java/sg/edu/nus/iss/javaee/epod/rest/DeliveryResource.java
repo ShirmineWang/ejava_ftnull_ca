@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -33,15 +34,15 @@ public class DeliveryResource {
         if (deliveryList == null || deliveryList.isEmpty()) {
             return (Response.status(Response.Status.NOT_FOUND).entity("no delivery data").build());
         }
-        JsonArrayBuilder jarray = Json.createArrayBuilder();
+        JsonArrayBuilder jarrayBuilder = Json.createArrayBuilder();
         for (Delivery delivery : deliveryList) {
-            jarray.add(Json.createObjectBuilder()
+            jarrayBuilder.add(Json.createObjectBuilder()
                     .add("name", delivery.getName())
                     .add("address", delivery.getAdress())
                     .add("phone", delivery.getPhone())
                     .add("pkg_id", delivery.getPkg_id())
-            ).build();
+            );
         }
-        return (Response.ok(jarray.toString()).build());
+        return (Response.ok(jarrayBuilder.build()).build());
     }
 }
