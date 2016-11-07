@@ -29,11 +29,10 @@ public class DeliveryBean {
         return (query.getResultList());
     }
     
-    public void addDelivery(Delivery delivery){
-        if(delivery!=null){
-            em.persist(delivery);
-        }
-        
-    }
+    public int addDelivery(Delivery delivery){
     
+            em.persist(delivery);
+            em.flush();
+            return delivery.getPkg_id();
+    }
 }

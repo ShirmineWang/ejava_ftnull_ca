@@ -1,12 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title> Pods </title>
+        <!-- load libs -->
+        <link type="text/css" rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     </h:head>
-    <h:body>
-        Hello from Facelets
+    <h1> Pods </h1>
+    <h:body class="container">
+        <ui:repeat var="pod" value="${showPodView.pods}">
+            <div class="card">
+                <div class="card-block">
+                    <p id="delivery_date" class="card-text"><small class="text-muted">#{pod.delivery_date}</small></p>
+                    <p id="pkg_id" class="card-text"><small class="text-muted">#{pod.pkg_id}</small></p>
+                    <p id="note" class="card-text"><small class="text-muted">#{pod.note} </small></p>
+                    <p id="image" class="card-text">#{pod.image}</p>
+                </div>
+            </div>
+        </ui:repeat>
     </h:body>
 </html>
 

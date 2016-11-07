@@ -9,17 +9,12 @@
     <h:body>
         <h1>Create Delivery</h1>
         <h:form>
-                <div>Name <h:inputText required="true" value="#{createNotesView.title}"/></div>
-                <div>
-                    Category: 
-                    <h:selectOneMenu value="#{createNotesView.category}">
-                        <f:selectItems  value="#{createNotesView.getAllCategory()}"/>
-                    </h:selectOneMenu>
-                </div>
-                <div>Content <h:inputTextarea required="true" value="#{createNotesView.content}"/></div>
-                <h:commandButton value="Create" action="#{createNotesView.createNote}" />
+            <div>Name <h:inputText required="true" value="#{createDeliveryView.name}"/></div>
+            <div>Address <h:inputText required="true" value="#{createDeliveryView.adress}"/></div>
+            <div>Phone <h:inputText required="true" value="#{createDeliveryView.phone}"/></div>
+            <h:commandButton value="Create" action="#{createDeliveryView.createDelivery()}" />
             </h:form>
-            <a class="navbar-brand" href="#{request.contextPath}/faces/menu.html">Back</a>
+            <a class="navbar-brand" href="index.xhtml">Back</a>
     </h:body>
 </html>
 

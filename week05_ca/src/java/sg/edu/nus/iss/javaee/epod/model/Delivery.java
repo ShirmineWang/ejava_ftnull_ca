@@ -62,5 +62,5 @@ public class Delivery implements Serializable {
     public void setCreate_date(Timestamp create_date) {
         this.create_date = create_date;
     }
-
+    
 }

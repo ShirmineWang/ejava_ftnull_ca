@@ -12,7 +12,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import sg.edu.nus.iss.javaee.epod.business.DeliveryBean;
+import sg.edu.nus.iss.javaee.epod.business.PodBean;
 import sg.edu.nus.iss.javaee.epod.model.Delivery;
+import sg.edu.nus.iss.javaee.epod.model.Pod;
 
 /**
  *
@@ -23,6 +25,11 @@ import sg.edu.nus.iss.javaee.epod.model.Delivery;
 public class createDeliveryView {
     @EJB 
     private DeliveryBean deliveryBean;
+    
+    @EJB
+    private PodBean podBean;
+    
+    
     
     private String name;
     private String adress;
@@ -69,7 +76,15 @@ public class createDeliveryView {
         delivery.setPhone(phone);
         delivery.setCreate_date(new Timestamp(System.currentTimeMillis()));
         
-        deliveryBean.addDelivery(delivery);
+        int pkid=deliveryBean.addDelivery(delivery);
+        createPod(pkid);
     }
-            
+    
+    public void createPod(int pkgid){
+        Pod pod=new Pod();
+        pod.setPkg_id(pkgid);
+        pod.setDelivery_date(new Timestamp(0));
+        
+        podBean.addPod(pod);
+    }
 }
