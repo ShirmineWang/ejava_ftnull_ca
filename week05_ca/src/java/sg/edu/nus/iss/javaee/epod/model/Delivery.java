@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * @author linby
  */
 @Entity
-public class delivery implements Serializable {
+public class Delivery implements Serializable {
     @Id
     private int pkg_id;
     private String name;
