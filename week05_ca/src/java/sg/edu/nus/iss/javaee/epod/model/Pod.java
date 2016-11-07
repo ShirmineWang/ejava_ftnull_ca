@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
@@ -27,8 +28,27 @@ public class Pod implements Serializable {
     private byte[] image;
     private Timestamp delivery_date;
     private String ack_id;
+    @JoinColumn(name = "pkg_id", referencedColumnName = "pkg_id", nullable = false)
     @OneToOne(optional = false)
-    private Delivery pkgId;
+    private Delivery delivery;
+
+    public String getAck_id() {
+        return ack_id;
+    }
+
+    public void setAck_id(String ack_id) {
+        this.ack_id = ack_id;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+    
+    
 
     public int getPod_id() {
         return pod_id;

@@ -73,7 +73,7 @@ public class createDeliveryView {
 
         Delivery delivery = new Delivery();
         delivery.setName(name);
-        delivery.setAdress(adress);
+        delivery.setAddress(adress);
         delivery.setPhone(phone);
         delivery.setCreate_date(new Timestamp(System.currentTimeMillis()));
         

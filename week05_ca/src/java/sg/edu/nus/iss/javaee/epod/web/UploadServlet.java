@@ -6,7 +6,6 @@
 package sg.edu.nus.iss.javaee.epod.web;
 
 import java.io.IOException;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -50,23 +49,17 @@ public class UploadServlet extends HttpServlet {
         Client client = ClientBuilder.newBuilder()
                 .register(MultiPartFeature.class)
                 .build();
-        Part imagePart = req.getPart("image");
-        Part notePart = req.getPart("note");
-        Part podIdPart = req.getPart("podId");
-        byte[] noteByte = new byte[(int) notePart.getSize()]; 
-//        String note = req.getParameter("note");
-//        int podId = Integer.valueOf(req.getParameter("podId"));
-//        String time = req.getParameter("time");
-        byte[] image = new byte[(int) imagePart.getSize()];
-        byte[] podIdByte = new byte[(int) podIdPart.getSize()]; 
-        imagePart.getInputStream().read(image);
-        notePart.getInputStream().read(noteByte);
-        podIdPart.getInputStream().read(podIdByte);
+        Part part = req.getPart("image");
+        String note = req.getParameter("note");
+        int podId = Integer.valueOf(req.getParameter("podId"));
+        String time = req.getParameter("time");
+        byte[] image = new byte[(int) part.getSize()];
+        part.getInputStream().read(image);
         //save to dataBase
         Pod pod = new Pod();
         pod.setImage(image);
-        pod.setPod_id(new BigInteger(podIdByte).intValue());
-        pod.setNote(new String(noteByte));
+        pod.setPod_id(podId);
+        pod.setNote(note);
         pod.setDelivery_date(new Timestamp(new Date().getTime()));
         podBean.UploadImageToPod(pod);
         //request to HQ

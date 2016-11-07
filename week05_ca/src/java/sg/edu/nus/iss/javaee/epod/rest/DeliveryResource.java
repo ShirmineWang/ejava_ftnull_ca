@@ -14,7 +14,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import sg.edu.nus.iss.javaee.epod.business.DeliveryBean;
+import sg.edu.nus.iss.javaee.epod.business.PodBean;
 import sg.edu.nus.iss.javaee.epod.model.Delivery;
+import sg.edu.nus.iss.javaee.epod.model.Pod;
 
 /**
  *
@@ -25,23 +27,26 @@ import sg.edu.nus.iss.javaee.epod.model.Delivery;
 public class DeliveryResource {
 
     @EJB
+    private PodBean podBean;
+    @EJB
     private DeliveryBean deliveryBean;
+    
+    
 
     @GET
     public Response getAllDelivery() {
-        List<Delivery> deliveryList = deliveryBean.getAllDelivery();
-        if (deliveryList == null || deliveryList.isEmpty()) {
-            return (Response.status(Response.Status.NOT_FOUND).entity("no delivery data").build());
-        }
-        JsonArrayBuilder jarrayBuilder = Json.createArrayBuilder();
-        for (Delivery delivery : deliveryList) {
-            jarrayBuilder.add(Json.createObjectBuilder()
-                    .add("name", delivery.getName())
-                    .add("address", delivery.getAdress())
-                    .add("phone", delivery.getPhone())
-                    .add("pkg_id", delivery.getPkg_id())
+        List<Pod> deliveries=podBean.getAllPod();
+        JsonArrayBuilder appJsonArrayBuilder=Json.createArrayBuilder();
+        deliveries.stream().forEach((p) -> {
+            appJsonArrayBuilder.add(Json.createObjectBuilder()
+                    .add("teamId","04802a45")
+                    .add("podId", p.getPod_id())
+                    .add("address", p.getDelivery().getAddress())
+                    .add("name", p.getDelivery().getName())
+                    .add("phone", p.getDelivery().getPhone())
+                    .build()
             );
-        }
-        return (Response.ok(jarrayBuilder.build()).build());
+          });
+        return (Response.status(Response.Status.CREATED).entity(appJsonArrayBuilder.build()).build());
     }
 }

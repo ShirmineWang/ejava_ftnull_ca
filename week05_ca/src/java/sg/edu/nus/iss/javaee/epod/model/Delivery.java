@@ -27,10 +27,19 @@ public class Delivery implements Serializable {
     private String address;
     private String phone;
     private Timestamp create_date;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pkgId")
+    @OneToOne(mappedBy = "delivery")
     private Pod pod;
 
+    public Pod getPod() {
+        return pod;
+    }
 
+    public void setPod(Pod pod) {
+        this.pod = pod;
+    }
+
+
+    
     public int getPkg_id() {
         return pkg_id;
     }   
@@ -47,11 +56,11 @@ public class Delivery implements Serializable {
         this.name = name;
     }
 
-    public String getAdress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAdress(String adress) {
+    public void setAddress(String adress) {
         this.address = adress;
     }
 
