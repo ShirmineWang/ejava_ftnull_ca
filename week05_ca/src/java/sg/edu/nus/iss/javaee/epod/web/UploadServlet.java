@@ -49,6 +49,7 @@ public class UploadServlet extends HttpServlet {
                 .build();
         BodyPart imgPart = new BodyPart(byte[].class,
                 MediaType.APPLICATION_OCTET_STREAM_TYPE);
+        imgPart.setEntity(req.getPart("image"));
         imgPart.setContentDisposition(
                 FormDataContentDisposition.name("image")
                 .fileName("ca3.png").build());
