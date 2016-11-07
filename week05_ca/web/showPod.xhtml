@@ -13,17 +13,7 @@
     </h:head>
     <h1> Pods </h1>
     <h:body class="container">
-        <ui:repeat var="pod" value="${showPodView.pods}">
-            <div class="card">
-                <div class="card-block">
-                    <p id="delivery_date" class="card-text"><small class="text-muted">#{pod.delivery_date}</small></p>
-                    <p id="pkg_id" class="card-text"><small class="text-muted">#{pod.pkg_id}</small></p>
-                    <p id="note" class="card-text"><small class="text-muted">#{pod.note} </small></p>
-                    <p id="image" class="card-text">#{pod.image}</p>
-                </div>
-            </div>
-        </ui:repeat>
-        <h:dataTable var="pod" value="#{showPodView.pods}">
+        <h:dataTable class="table table-striped" var="pod" value="#{showPodView.pods}">
 
 					<h:column>
 						<f:facet name="header">
@@ -51,6 +41,7 @@
 					</h:column>
 
 				</h:dataTable>
+        <a class="navbar-brand" href="index.xhtml">Back</a>
     </h:body>
 </html>
 

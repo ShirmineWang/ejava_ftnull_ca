@@ -5,9 +5,13 @@
  */
 package sg.edu.nus.iss.javaee.epod.web;
 
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
@@ -78,6 +82,13 @@ public class createDeliveryView {
         
         int pkid=deliveryBean.addDelivery(delivery);
         createPod(pkid);
+        
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/faces/showDelivery.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(createDeliveryView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void createPod(int pkgid){

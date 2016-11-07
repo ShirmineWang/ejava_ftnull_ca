@@ -14,7 +14,7 @@
     <h1> Deliverys </h1>
     <h:body class="container">
         
-        <h:dataTable var="delivery" value="#{showDeliveryView.deliveries}">
+        <h:dataTable class="table table-striped" var="delivery" value="#{showDeliveryView.deliveries}">
 
 					<h:column>
 						<f:facet name="header">
@@ -42,6 +42,7 @@
 					</h:column>
 
 				</h:dataTable>
+        <a class="navbar-brand" href="index.xhtml">Back</a>
     </h:body>
 </html>
 
