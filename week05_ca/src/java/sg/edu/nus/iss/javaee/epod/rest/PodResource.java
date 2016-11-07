@@ -41,14 +41,10 @@ public class PodResource {
         pod.setDelivery_date(time);
         pod.setImage(image);
         // save it
-        updatePod(pod);
+         podBean.UploadImageToPod(pod);
         //response
         String output = "File uploaded succeed";
         return Response.status(200).entity(output).build();
-    }
-
-    private void updatePod(Pod pod) {
-        //TODO update the pod(image,deliveryTime)
     }
 
 }
