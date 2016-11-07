@@ -21,7 +21,7 @@ public class DeliveryBean {
      @PersistenceContext
     private EntityManager em;
      
-      private static final String queryString= "select d from Delivery d";
+    private static final String queryString= "select d from Delivery d";
      
     public List<Delivery> getAllDelivery(){
          TypedQuery<Delivery> query = em.createQuery(
@@ -30,6 +30,9 @@ public class DeliveryBean {
     }
     
     public void addDelivery(Delivery delivery){
+        if(delivery!=null){
+            em.persist(delivery);
+        }
         
     }
     
