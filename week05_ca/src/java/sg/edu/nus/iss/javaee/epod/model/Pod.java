@@ -25,7 +25,7 @@ public class Pod implements Serializable {
     @Lob
     private byte[] image;
     private Timestamp delivery_date;
-    private String act_id;
+    private String ack_id;
 
     public int getPod_id() {
         return pod_id;
@@ -68,11 +68,11 @@ public class Pod implements Serializable {
     }
 
     public String getAct_id() {
-        return act_id;
+        return ack_id;
     }
 
     public void setAct_id(String act_id) {
-        this.act_id = act_id;
+        this.ack_id = act_id;
     }
 
 }

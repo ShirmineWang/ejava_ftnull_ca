@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title> Deliverys </title>
         <!-- load libs -->
@@ -12,16 +13,35 @@
     </h:head>
     <h1> Deliverys </h1>
     <h:body class="container">
-        <ui:repeat var="delivery" value="${showDeliveryView.deliveries}">
-            <div class="card">
-                <div class="card-block">
-                    <p id="create_date" class="card-text"><small class="text-muted">#{delivery.create_date}</small></p>
-                    <p id="name" class="card-text"><small class="text-muted">#{delivery.name}</small></p>
-                    <p id="address" class="card-text"><small class="text-muted">#{delivery.adress} </small></p>
-                    <p id="phone" class="card-text">#{delivery.phone}</p>
-                </div>
-            </div>
-        </ui:repeat>
+        
+        <h:dataTable var="delivery" value="#{showDeliveryView.deliveries}">
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="create date"/>
+						</f:facet>
+                                            <h:outputText value="#{delivery.create_date}"/>
+					</h:column>
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="name"/>
+						</f:facet>
+                                            <h:outputText value="#{delivery.name}"/>
+					</h:column>
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="address"/>
+						</f:facet>
+                                            <h:outputText value="#{delivery.adress}"/>
+					</h:column>
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="phone"/>
+						</f:facet>
+                                            <h:outputText value="#{delivery.phone}"/>
+					</h:column>
+
+				</h:dataTable>
     </h:body>
 </html>
 
