@@ -17,7 +17,7 @@ import sg.edu.nus.iss.javaee.epod.model.Pod;
  * @author linby
  */
 public class PodBean {
-
+    
     @PersistenceContext
     private EntityManager em;
     
@@ -40,5 +40,10 @@ public class PodBean {
         db_pod.setImage(pod.getImage());
         db_pod.setNote(pod.getNote());
         db_pod.setDelivery_date(pod.getDelivery_date());
+    }
+    
+    public void updateAckId(int podId, String ackId) {
+        Pod db_pod = em.find(Pod.class, podId);
+        db_pod.setAct_id(ackId);
     }
 }
