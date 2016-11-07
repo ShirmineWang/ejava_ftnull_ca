@@ -5,16 +5,37 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Create Delivery</title>
+        <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css"/> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     </h:head>
     <h:body>
+         <div class="center-block" style="width:80%">
         <h1>Create Delivery</h1>
         <h:form>
-            <div>Name <h:inputText required="true" value="#{createDeliveryView.name}"/></div>
-            <div>Address <h:inputText required="true" value="#{createDeliveryView.adress}"/></div>
-            <div>Phone <h:inputText required="true" value="#{createDeliveryView.phone}"/></div>
-            <h:commandButton value="Create" action="#{createDeliveryView.createDelivery()}" />
+            <div class="form-group row" style="width: 50%">
+                <label for="example-email-input" class="col-xs-2 col-form-label">Name</label>
+                <div class="col-xs-10">
+                    <h:inputText required="true" value="#{createDeliveryView.name}" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row" style="width: 50%">
+                <label for="example-email-input" class="col-xs-2 col-form-label">Address</label>
+                <div class="col-xs-10">
+                    <h:inputText required="true" value="#{createDeliveryView.adress}" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row" style="width: 50%">
+                <label for="example-email-input" class="col-xs-2 col-form-label">Phone</label>
+                <div class="col-xs-10">
+                    <h:inputText required="true" value="#{createDeliveryView.phone}" class="form-control" />
+                </div>
+            </div>
+            
+            <h:commandButton class="btn btn-primary" value="Create" action="#{createDeliveryView.createDelivery()}" />
             </h:form>
             <a class="navbar-brand" href="index.xhtml">Back</a>
+         </div>
     </h:body>
 </html>
 

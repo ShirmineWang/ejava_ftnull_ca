@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title> Pods </title>
         <!-- load libs -->
@@ -12,16 +13,35 @@
     </h:head>
     <h1> Pods </h1>
     <h:body class="container">
-        <ui:repeat var="pod" value="${showPodView.pods}">
-            <div class="card">
-                <div class="card-block">
-                    <p id="delivery_date" class="card-text"><small class="text-muted">#{pod.delivery_date}</small></p>
-                    <p id="pkg_id" class="card-text"><small class="text-muted">#{pod.pkg_id}</small></p>
-                    <p id="note" class="card-text"><small class="text-muted">#{pod.note} </small></p>
-                    <p id="image" class="card-text">#{pod.image}</p>
-                </div>
-            </div>
-        </ui:repeat>
+        <h:dataTable class="table table-striped" var="pod" value="#{showPodView.pods}">
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="delivery_date"/>
+						</f:facet>
+                                            <h:outputText value="#{pod.delivery_date}"/>
+					</h:column>
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="pkg_id"/>
+						</f:facet>
+                                            <h:outputText value="#{pod.pkg_id}"/>
+					</h:column>
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="note"/>
+						</f:facet>
+                                            <h:outputText value="#{pod.note}"/>
+					</h:column>
+                                        <h:column>
+						<f:facet name="header">
+							<h:outputText value="image"/>
+						</f:facet>
+                                            <h:graphicImage value="#{pod.image}" />
+					</h:column>
+
+				</h:dataTable>
+        <a class="navbar-brand" href="index.xhtml">Back</a>
     </h:body>
 </html>
 
