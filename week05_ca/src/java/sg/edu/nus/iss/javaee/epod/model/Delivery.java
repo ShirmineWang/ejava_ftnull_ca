@@ -7,10 +7,12 @@ package sg.edu.nus.iss.javaee.epod.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,6 +27,9 @@ public class Delivery implements Serializable {
     private String address;
     private String phone;
     private Timestamp create_date;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pkgId")
+    private Pod pod;
+
 
     public int getPkg_id() {
         return pkg_id;

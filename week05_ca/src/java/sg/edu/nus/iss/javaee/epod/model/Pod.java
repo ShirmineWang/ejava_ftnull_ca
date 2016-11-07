@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -26,6 +27,8 @@ public class Pod implements Serializable {
     private byte[] image;
     private Timestamp delivery_date;
     private String ack_id;
+    @OneToOne(optional = false)
+    private Delivery pkgId;
 
     public int getPod_id() {
         return pod_id;
