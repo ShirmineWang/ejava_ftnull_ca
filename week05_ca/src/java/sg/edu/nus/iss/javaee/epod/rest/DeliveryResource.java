@@ -8,10 +8,13 @@ package sg.edu.nus.iss.javaee.epod.rest;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import sg.edu.nus.iss.javaee.epod.business.DeliveryBean;
+import sg.edu.nus.iss.javaee.epod.model.Delivery;
 
 /**
  *
@@ -20,11 +23,25 @@ import sg.edu.nus.iss.javaee.epod.business.DeliveryBean;
 @RequestScoped
 @Path("/items")
 public class DeliveryResource {
-    @EJB public DeliveryBean deliveryBean;
+
+    @EJB
+    private DeliveryBean deliveryBean;
 
     @GET
     public Response getAllDelivery() {
-        
-        return (Response.ok().build());
+        List<Delivery> deliveryList = deliveryBean.getAllDelivery();
+        if (deliveryList == null || deliveryList.isEmpty()) {
+            return (Response.status(Response.Status.NOT_FOUND).entity("no delivery data").build());
+        }
+        JsonArrayBuilder jarray = Json.createArrayBuilder();
+        for (Delivery delivery : deliveryList) {
+            jarray.add(Json.createObjectBuilder()
+                    .add("name", delivery.getName())
+                    .add("address", delivery.getAdress())
+                    .add("phone", delivery.getPhone())
+                    .add("pkg_id", delivery.getPkg_id())
+            ).build();
+        }
+        return (Response.ok(jarray.toString()).build());
     }
 }

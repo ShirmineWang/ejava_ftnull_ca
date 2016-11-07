@@ -9,17 +9,20 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
  * @author linby
  */
 @Entity
-public class Pod implements Serializable{
+public class Pod implements Serializable {
+
     @Id
     private int pod_id;
     private int pkg_id;
     private String note;
+    @Lob
     private byte[] image;
     private Timestamp delivery_date;
     private String act_id;

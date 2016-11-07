@@ -25,7 +25,7 @@ public class Delivery implements Serializable {
 
     public int getPkg_id() {
         return pkg_id;
-    }
+    }   
 
     public void setPkg_id(int pkg_id) {
         this.pkg_id = pkg_id;
