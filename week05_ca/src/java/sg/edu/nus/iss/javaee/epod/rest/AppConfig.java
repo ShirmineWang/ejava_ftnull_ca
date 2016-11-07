@@ -5,8 +5,11 @@
  */
 package sg.edu.nus.iss.javaee.epod.rest;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 /**
  *
@@ -14,5 +17,11 @@ import javax.ws.rs.core.Application;
  */
 @ApplicationPath("/api")
 public class AppConfig extends Application{
-    
+     @Override
+    public Set<Class<?>> getClasses() {
+        final Set<Class<?>> classes = new HashSet<Class<?>>();
+        // register resources and features
+        classes.add(MultiPartFeature.class);
+        return classes;
+    }
 }
